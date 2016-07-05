@@ -6,27 +6,36 @@ import {
   View,
   TouchableHighlight
 } from 'react-native';
+import TodoModel from './TodoModel';
+import OmniBox from './OmniBox';
 import SortableListView from 'react-native-sortable-listview';
 import CheckBox from './CheckBox';
 
-let data = {
-  hello: {text: 'world', completed: false},
-  how: {text: 'are you', completed: false}
+let data = [
+   new TodoModel('hello', false),
+   new TodoModel('world', false),
+];
+
+var getOrder = function(list) {
+  return Object.keys(list);
 }
 
-let order = Object.keys(data); //Array of keys
+var todoListOrder = getOrder(data);
 
 class TodoListView extends Component {
   constructor(props) {
     super(props);
+    this.updateTodoList = this.updateTodoList.bind(this);
     this.state = {
       todoList: data
     }
   }
 
-  _onRowMoved(e) {
-    order.splice(e.to, 0, order.splice(e.from, 1)[0]);
-    this.forceUpdate();
+  updateTodoList(todoList) {
+    this.setState({
+      todoList: todoList
+    });
+    todoListOrder = getOrder(todoList);
   }
 
   _onRenderRow(todo) {
@@ -34,21 +43,38 @@ class TodoListView extends Component {
       <TouchableHighlight underlayColor={'#eee'} style={{padding: 10, backgroundColor: "#F8F8F8", borderBottomWidth:1, borderColor: '#eee'}} {...this.props.sortHandlers}>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
           <CheckBox data={todo}></CheckBox>
-          <Text style={{fontSize:18}}>{todo.text}</Text>
+          <Text style={{fontSize:18}}>{todo.title}</Text>
         </View>
       </TouchableHighlight>
     )
   }
 
   render() {
-    return <SortableListView
+    let listView = (<View></View>);
+    if (this.state.todoList.length) {
+      listView = (
+        <SortableListView
           ref='listView'
           style={{flex: 1}}
           data={this.state.todoList}
-          order={order}
-          onRowMoved={(e) => this._onRowMoved(e)}
+          order={todoListOrder}
+          onRowMoved={(e) => {
+            todoListOrder.splice(e.to, 0, todoListOrder.splice(e.from, 1)[0]);
+            this.forceUpdate();
+          }}
           renderRow={(todo) => this._onRenderRow(todo)}
         />
+      );
+    }
+
+    return (
+        <View style={{flex: 1}}>
+          <OmniBox
+            data={data}
+            updateTodoList={this.updateTodoList}/>
+          {listView}
+        </View>
+    )
   }
 };
 
