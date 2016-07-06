@@ -1,17 +1,12 @@
 import React, { Component } from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
-import TodoListView from './TodoListView';
+import { AppRegistry, StyleSheet, Text, View } from 'react-native';
+import ListView from './ListView';
 
 class TodoApp extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <TodoListView></TodoListView>
+        <ListView></ListView>
       </View>
     );
   }
@@ -21,12 +16,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    marginTop: 30,
-    marginBottom: 10,
-    marginLeft: 2,
-    marginRight: 2,
+    paddingTop: 30,
+    paddingBottom: 10,
+    paddingLeft: 2,
+    paddingRight: 2,
     //alignItems: 'center',
-    //backgroundColor: '#F5FCFF',
+    backgroundColor: '#F8F8F8',
   }
 });
 

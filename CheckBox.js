@@ -9,29 +9,23 @@ class CheckBox extends Component {
     };
   }
 
-  _onCheckBoxPress() {
-    var data = this.state.data;
-    data.completed = !data.completed;
-    this.setState({
-      data: data
-    })
-  }
-
   render() {
     let iconName = this.state.data.completed ? 'check-box' : 'check-box-outline-blank';
+
+    let color = this.props.color || '#000';
 
     return (
       <Icon.Button
         data={this.state.data}
         name={iconName}
         backgroundColor='rgba(0,0,0,0)'
-        color='#000'
+        color={color}
         underlayColor='rgba(0,0,0,0)'
         size={20}
-        iconStyle={{marginLeft: -10}}
+        iconStyle={{marginLeft: -10, marginRight: 0}}
         activeOpacity={1}
         borderRadius={5}
-        onPress={() => this._onCheckBoxPress()}
+        onPress={this.props.onCheckBoxPressed}
       >
       </Icon.Button>
     );
