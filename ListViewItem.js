@@ -29,12 +29,11 @@ class ListViewItem extends Component {
 
   render() {
     let data = this.state.data;
-    let dataIndex = this.props.dataIndex;
     let color = data.completed ? '#C5C8C9' : '#000';
     return (
       <TouchableHighlight underlayColor={'#eee'} style={{paddingTop: 6, paddingBottom: 6, backgroundColor: "#F8F8F8", borderBottomWidth:1, borderColor: '#eee'}} {...this.props.sortHandlers}>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
-          <CheckBox data={data} dataIndex={dataIndex} color={color} onCheckBoxPressed={this._onCheckBoxPressed}></CheckBox>
+          <CheckBox data={data} color={color} onCheckBoxPressed={this._onCheckBoxPressed}></CheckBox>
           <Text style={{fontSize:18, color: color}}>{data.title}</Text>
         </View>
       </TouchableHighlight>
