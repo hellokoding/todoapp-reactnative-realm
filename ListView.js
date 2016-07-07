@@ -19,7 +19,7 @@ function getOrder(list) {
 
 function moveOrderItem(listView, fromIndex, toIndex) {
   Utils.move(dataListOrder, parseInt(fromIndex), parseInt(toIndex));
-  //if (listView.forceUpdate) listView.forceUpdate();
+  if (listView.forceUpdate) listView.forceUpdate();
 }
 
 class ListView extends Component {
@@ -28,18 +28,15 @@ class ListView extends Component {
     this.updateDataList = this.updateDataList.bind(this);
     this._onCompletedChange = this._onCompletedChange.bind(this);
     this.state = {
-      dataList: dataList,
-      dataListOrder: dataListOrder
+      dataList: dataList
     }
   }
 
   updateDataList(dataList) {
     dataListOrder = getOrder(dataList);
     this.setState({
-      dataList: dataList,
-      dataListOrder: dataListOrder
+      dataList: dataList
     });
-    //this.forceUpdate();
   }
 
   _onCompletedChange(dataItem, index) {
@@ -56,7 +53,7 @@ class ListView extends Component {
           ref='listView'
           style={{flex: 1}}
           data={this.state.dataList}
-          order={this.state.dataListOrder}
+          order={dataListOrder}
           onRowMoved={e => moveOrderItem(this, e.from, e.to)}
           renderRow={(dataItem, section, index) => <ListViewItem data={dataItem} dataIndex={index} onCompletedChange={this._onCompletedChange}/>}
         />

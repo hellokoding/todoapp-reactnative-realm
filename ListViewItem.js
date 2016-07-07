@@ -11,6 +11,12 @@ class ListViewItem extends Component {
     }
   }
 
+  componentWillReceiveProps(props) {
+    this.setState({
+      data: props.data
+    })
+  }
+
   _onCheckBoxPressed() {
     var data = this.state.data;
     data.completed = !data.completed;
