@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {TouchableHighlight, View, Text} from 'react-native';
 import CheckBox from './CheckBox';
+import TodoService from './TodoService';
 
 class ListViewItem extends Component {
   constructor(props) {
@@ -19,7 +20,9 @@ class ListViewItem extends Component {
 
   _onCheckBoxPressed() {
     var data = this.state.data;
-    data.completed = !data.completed;
+    TodoService.update(data, () => {
+      data.completed = !data.completed;
+    });
     this.setState({
       data: data
     });

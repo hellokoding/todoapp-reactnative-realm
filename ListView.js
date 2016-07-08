@@ -5,12 +5,9 @@ import OmniBox from './OmniBox';
 import SortableListView from 'react-native-sortable-listview';
 import ListViewItem from './ListViewItem';
 import Utils from './Utils';
+import TodoService from './TodoService';
 
-let dataList = [
-   new TodoModel('hello', false),
-   new TodoModel('world', false),
-];
-
+let dataList = TodoService.findAll();
 var dataListOrder = getOrder(dataList);
 
 function getOrder(list) {
@@ -63,7 +60,7 @@ class ListView extends Component {
     return (
         <View style={{flex: 1, marginLeft: 10, marginRight: 10}}>
           <OmniBox
-            data={dataList}
+            data={Array.from(dataList)}
             updateDataList={this.updateDataList}/>
           {listView}
         </View>

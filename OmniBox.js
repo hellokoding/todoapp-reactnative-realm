@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { TextInput } from 'react-native';
 import TodoModel from './TodoModel';
+import TodoService from './TodoService';
 import Utils from './Utils';
 
 class OmniBox extends Component {
@@ -43,7 +44,7 @@ class OmniBox extends Component {
       }
 
       dataList.unshift(newDataItem);
-      //TodoAPI.add(newDataItem);
+      TodoService.save(newDataItem);
 
       this.setState({
         newValue: ''
