@@ -36,10 +36,8 @@ class ListView extends Component {
     });
   }
 
-  _onCompletedChange(dataItem, index) {
-    let fromIndex = dataListOrder.indexOf(index);
-    let toIndex = dataItem.completed ? dataListOrder.length - 1 : 0;
-    moveOrderItem(this, fromIndex, toIndex);
+  _onCompletedChange() {
+    if (this.forceUpdate) this.forceUpdate();
   }
 
   render() {
@@ -52,7 +50,7 @@ class ListView extends Component {
           data={this.state.dataList}
           order={dataListOrder}
           onRowMoved={e => moveOrderItem(this, e.from, e.to)}
-          renderRow={(dataItem, section, index) => <ListViewItem data={dataItem} dataIndex={index} onCompletedChange={this._onCompletedChange}/>}
+          renderRow={(dataItem, section, index) => <ListViewItem data={dataItem} onCompletedChange={this._onCompletedChange}/>}
         />
       );
     }

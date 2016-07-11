@@ -57,7 +57,6 @@ class OmniBox extends Component {
     return (
       <TextInput style={{height: 36, padding: 4, marginBottom: 0, fontSize: 16, borderWidth: 1, borderColor: '#eee', borderRadius: 8, backgroundColor: '#fff'}}
         placeholder='Add a todo or Search'
-        autoFocus={true}
         blurOnSubmit={false}
         value={this.state.newValue}
         onKeyPress={this.onKeyPress}

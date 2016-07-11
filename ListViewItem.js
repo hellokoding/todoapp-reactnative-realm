@@ -24,10 +24,10 @@ class ListViewItem extends Component {
       data.completed = !data.completed;
     });
     this.setState({
-      data: data
+       data: data
     });
 
-    this.props.onCompletedChange(data, this.props.dataIndex);
+    this.props.onCompletedChange();
   }
 
   render() {
