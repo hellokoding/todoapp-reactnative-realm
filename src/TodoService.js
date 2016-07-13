@@ -2,7 +2,17 @@ import Realm from 'realm';
 import TodoModel from './TodoModel';
 
 let repository = new Realm({
-  schema: [{name: 'Todo', primaryKey: 'id', properties: {id: {type: 'string', indexed: true}, title: 'string', completed: 'bool', createdAt: 'date', updatedAt: 'date'}}]
+    schema: [{
+	name: 'Todo',
+	primaryKey: 'id',
+	properties: {
+	    id: {type: 'string', indexed: true},
+	    title: 'string',
+	    completed: 'bool',
+	    createdAt: 'date',
+	    updatedAt: 'date'
+	}
+    }]
 });
 
 let TodoService = {
