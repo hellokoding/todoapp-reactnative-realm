@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { AppRegistry, StyleSheet, Text, View } from 'react-native';
-import ListView from './ListView';
+import ListView from './src/ListView';
 
 class TodoApp extends Component {
   render() {
