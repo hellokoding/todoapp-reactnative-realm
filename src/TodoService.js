@@ -22,7 +22,7 @@ let TodoService = {
   },
 
   save: function(todo) {
-    if (TodoService.findAll().filtered("title = '" + todo.title + "'").length) return;
+    if (repository.objects('Todo').filtered("title = '" + todo.title + "'").length) return;
 
     repository.write(() => {
       todo.updatedAt = new Date();
@@ -30,10 +30,10 @@ let TodoService = {
     })
   },
 
-  update: function(todo, fn) {
-    if (!fn) return;
+  update: function(todo, callback) {
+    if (!callback) return;
     repository.write(() => {
-      fn();
+      callback();
       todo.updatedAt = new Date();
     });
   }
