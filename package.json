@@ -8,7 +8,6 @@
   "dependencies": {
     "react": "15.2.0",
     "react-native": "0.28.0",
-    "react-native-icon-checkbox": "^1.1.1",
     "react-native-sortable-listview": "0.0.8",
     "react-native-vector-icons": "^2.0.3",
     "react-timer-mixin": "^0.13.3",
